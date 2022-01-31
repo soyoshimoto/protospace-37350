@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2022_01_20_185559) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.text "content", null: false
+    t.bigint "prototype_id", null: false
+    t.index ["prototype_id"], name: "index_comments_on_prototype_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -68,6 +70,7 @@ ActiveRecord::Schema.define(version: 2022_01_20_185559) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "prototypes"
   add_foreign_key "comments", "users"
   add_foreign_key "prototypes", "users"
 end
